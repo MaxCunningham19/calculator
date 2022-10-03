@@ -1,7 +1,8 @@
 
 def validateExpression(expression: str):
     lastUnitIsOP = True
-    for i in range(len(expression)):
+    i = 0
+    while i < len(expression):
         if isOperation(expression[i]):
             if lastUnitIsOP:
                 return False, i
@@ -11,7 +12,7 @@ def validateExpression(expression: str):
                 return False, i
             lastUnitIsOP = False
             i = findEndOfNumber(expression, i)
-
+        i = i + 1
     return not lastUnitIsOP, len(expression)
 
 
@@ -32,6 +33,6 @@ def isNumber(char : str) -> bool:
 def findEndOfNumber(exp: str, curI:int) -> int:
     for i in range(curI,len(exp)):
         if not isNumber(exp[i]):
-            return i - 1
+            return i-1
     return len(exp)-1
 

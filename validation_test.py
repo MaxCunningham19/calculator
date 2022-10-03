@@ -1,4 +1,4 @@
-from validation import validateExpression
+from validation import validateExpression,findEndOfNumber
 from testing_kit import Test
 
 def test_validateExpression() -> None:
@@ -11,14 +11,38 @@ def test_validateExpression() -> None:
              Test("More Numbers","1 1 + 1", (False,2)),
              Test("More Operations", "1 + + 2",(False,4)),
              Test("Incorrect Order", "1 + + 1 2", (False,4)),
-             Test("Incorrect Order 2", " 1 5 *",(False,2)),
+             Test("Incorrect Order 2", " 1 5 *",(False,3)),
              Test("Incorrect Order 3", "7 - 1 / - 4 0", (False,8))]
 
     hasFailure = False
     for t in tests:
         result = validateExpression(t.input)
         if result != t.output:
-            print("Test",t.name,"(",t.input,")failed - Expected:",t.output,"Got:",result)
+            print("Test",t.name,"failed - Expected:",t.output,"Got:",result)
             hasFailure = True
     assert(hasFailure == False)
     
+
+class inp:
+    def __init__(self,exp,i):
+        self.exp = exp
+        self.i = i
+
+
+def test_findEndOfNumber():
+    tests = [Test("1 Digit", inp("1",0),0),
+             Test("2 Digits",inp("10",0),1),
+             Test("2 Digits w/ op", inp("10-",0), 1),
+             Test("Trips w/Spaces", inp("101 ",0),2),
+             Test("No 0 Start",inp("101",1),2),
+             Test("Complex", inp(" - 531 124",3),5),
+             Test("TwentyOne", inp("21",0),1),
+             Test("Twentyone2",inp(" 21 ",1),2)]
+
+    hasFailure = False
+    for t in tests:
+        result = findEndOfNumber(t.input.exp,t.input.i)
+        if result != t.output:
+            print("Test",t.name,"failed - Expected:",t.output,"Got:",result)
+            hasFailure = True
+    assert(hasFailure == False)
