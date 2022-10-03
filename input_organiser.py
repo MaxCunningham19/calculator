@@ -1,13 +1,15 @@
 # isValidInput
 # @param: input_to_calc -> the input string of the user
 # @return: bool -> returns true if the string only contains valid characters
-validChars = {'+', '-', '/', '*', '^', '(', ')', ' '}
+from distutils.log import error
 
+
+validChars = {'+', '-', '/', '*', '^', '(', ')', ' '}
 
 def isValidChars(input_to_calc: str) -> bool:
     for tmpChar in input_to_calc:
         special = validChars.intersection({tmpChar})
-        if len(special) == 0 and (ord(tmpChar) < 48 or ord(tmpChar) > 57):
+        if len(special) == 0 and not isNumber(tmpChar):
             return False
     return True
 
@@ -79,12 +81,25 @@ def applyOp(val1, op, val2):
         return val1 ^ val2      # shouldn't be any other possible values as validChar function handles those cases
 
 
+def hasStackError(val_stack, op_stack)->bool:
+    if len(op_stack)==0 and len(val_stack)!=0:
+        return "invalid input - more values than neccissary operations"
+    elif len(val_stack)<2 and len(op_stack)!=0:
+        return "invalid input - more operations than neccissary values"
+    return None
+
+
 def act(val_stack, op_stack):
+    err = hasStackError(val_stack,op_stack)
+    if err != None:
+        return err
+
     op = op_stack.pop()
     val2 = val_stack.pop()
     val1 = val_stack.pop()
     res = applyOp(val1, op, val2)
     val_stack.append(res)
+    return None
 
 
 def evaluate(expr):
@@ -101,12 +116,15 @@ def evaluate(expr):
             op_stack.pop()  # discard "("
         else:
             while len(op_stack) != 0 and op_stack[-1] != '(' and getPrecedence(op_stack[-1]) >= getPrecedence(token):
-                act(val_stack, op_stack)
+               err = act(val_stack, op_stack)
+               if err != None :
+                    return err
             op_stack.append(token)
 
     while len(op_stack) != 0:
-        act(val_stack, op_stack)
-
+        err = act(val_stack, op_stack)
+        if err != None :
+            return err
     return val_stack.pop()
 
 
