@@ -6,7 +6,7 @@ class test:
         self.input = input
         self.output = output
 
-def isValidCharsTest() -> None:
+def test_isValidChars() -> None:
     tests = [test("addition","1+1",True),
             test("multiplication","1x2",True),
             test("subtraction","1-1",True),
