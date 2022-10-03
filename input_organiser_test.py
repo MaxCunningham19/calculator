@@ -60,7 +60,8 @@ def test_getPrecidence()->None:
              Test("Sub",'-',1),
              Test("Add",'+',1),
              Test("Div",'/',2),
-             Test("Pow",'^',3)]
+             Test("Pow",'^',3),
+             Test("No OP",' ', None)]
 
     fails = []
     for t in tests:
