@@ -128,12 +128,10 @@ def evaluate(expr):
     return val_stack.pop()
 
 
-if __name__ == "__main__":
-    print("Welcome to simple calculator")
-    stuff_to_calculate = input("Enter your calculation: ")
+def calculate(stuff_to_calculate:str):
     if isValidChars(stuff_to_calculate):
         test = convertToList(stuff_to_calculate)
         result = evaluate(test)
-        print(result)
-    else:
-        print("error")
+        return result
+    return "Invalid Input - Contains invalid characters - accpets [0-9,-,+,/,*,^]"
+
