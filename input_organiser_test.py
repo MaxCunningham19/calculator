@@ -25,5 +25,3 @@ def isValidCharsTest() -> None:
             print("Test",t.name,"Fails Expected:",t.output,"Got:",result)
     print("isValidCharTest Complete...")
     assert(len(fails) == 0)
-
-isValidCharsTest()
