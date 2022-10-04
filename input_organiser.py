@@ -64,7 +64,6 @@ def act(val_stack, op_stack):
     val1 = val_stack.pop()
     res = applyOp(val1, op, val2)
     val_stack.append(res)
-    return None
 
 
 def evaluate(expr):
@@ -81,15 +80,11 @@ def evaluate(expr):
             op_stack.pop()  # discard "("
         else:
             while len(op_stack) != 0 and op_stack[-1] != '(' and getPrecedence(op_stack[-1]) >= getPrecedence(token):
-               err = act(val_stack, op_stack)
-               if err != None :
-                    return err
+               act(val_stack, op_stack)
             op_stack.append(token)
 
     while len(op_stack) != 0:
-        err = act(val_stack, op_stack)
-        if err != None :
-            return err
+        act(val_stack, op_stack)
     return val_stack.pop()
 
 
