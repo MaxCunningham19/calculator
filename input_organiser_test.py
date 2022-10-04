@@ -1,12 +1,5 @@
 import input_organiser as io
-
-
-class Test:
-    def __init__(self, name: str, input, output) -> None:
-        self.name = name
-        self.input = input
-        self.output = output
-
+from testing_kit import Test
 
 def test_isValidChars() -> None:
     tests = [Test("addition", "1+1", True),
