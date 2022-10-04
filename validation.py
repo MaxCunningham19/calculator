@@ -1,3 +1,5 @@
+from util import isNumber, isOperation
+
 
 def validateExpression(expression: str):
     lastUnitIsOP = True
@@ -23,22 +25,6 @@ def isValidChars(input_to_calc: str) -> bool:
         if len(special) == 0 and not isNumber(tmpChar):
             return False
     return True
-
-
-operations = {'+', '-', '/', '*', '^'}
-def isOperation(char : str) -> bool:
-    for op in operations:
-        if char == op:
-            return True
-    return False
-
-
-ascii_0 = 48
-ascii_9 = 57
-def isNumber(char : str) -> bool:
-    if ascii_0 <= ord(char) <= ascii_9:
-        return True
-    return False
 
 
 def findEndOfNumber(exp: str, curI:int) -> int:

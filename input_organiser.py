@@ -1,8 +1,4 @@
-def isNumber(char):
-    if 48 <= ord(char) <= 57:
-        return True
-    return False
-
+from util import isNumber
 
 def convertToList(input_to_calc: str):
     # no_space = input_to_calc.replace(" ", "")
