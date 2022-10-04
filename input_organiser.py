@@ -1,19 +1,3 @@
-# isValidInput
-# @param: input_to_calc -> the input string of the user
-# @return: bool -> returns true if the string only contains valid characters
-from distutils.log import error
-
-
-validChars = {'+', '-', '/', '*', '^', '(', ')', ' '}
-
-def isValidChars(input_to_calc: str) -> bool:
-    for tmpChar in input_to_calc:
-        special = validChars.intersection({tmpChar})
-        if len(special) == 0 and not isNumber(tmpChar):
-            return False
-    return True
-
-
 def isNumber(char):
     if 48 <= ord(char) <= 57:
         return True
@@ -81,19 +65,7 @@ def applyOp(val1, op, val2):
         return val1 ^ val2      # shouldn't be any other possible values as validChar function handles those cases
 
 
-def hasStackError(val_stack, op_stack)->bool:
-    if len(op_stack)==0 and len(val_stack)!=0:
-        return "invalid input - more values than neccissary operations"
-    elif len(val_stack)<2 and len(op_stack)!=0:
-        return "invalid input - more operations than neccissary values"
-    return None
-
-
 def act(val_stack, op_stack):
-    err = hasStackError(val_stack,op_stack)
-    if err != None:
-        return err
-
     op = op_stack.pop()
     val2 = val_stack.pop()
     val1 = val_stack.pop()
@@ -127,11 +99,10 @@ def evaluate(expr):
             return err
     return val_stack.pop()
 
-
+# calculate assumes that calulation is fully formed and correct
 def calculate(stuff_to_calculate:str):
-    if isValidChars(stuff_to_calculate):
-        test = convertToList(stuff_to_calculate)
-        result = evaluate(test)
-        return result
-    return "Invalid Input - Contains invalid characters - accpets [0-9,-,+,/,*,^]"
+    test = convertToList(stuff_to_calculate)
+    result = evaluate(test)
+    return result
+
 

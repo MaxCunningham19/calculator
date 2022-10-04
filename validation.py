@@ -16,6 +16,15 @@ def validateExpression(expression: str):
     return not lastUnitIsOP, len(expression)
 
 
+validChars = {'+', '-', '/', '*', '^', '(', ')', ' '}
+def isValidChars(input_to_calc: str) -> bool:
+    for tmpChar in input_to_calc:
+        special = validChars.intersection({tmpChar})
+        if len(special) == 0 and not isNumber(tmpChar):
+            return False
+    return True
+
+
 operations = {'+', '-', '/', '*', '^'}
 def isOperation(char : str) -> bool:
     for op in operations:
@@ -24,8 +33,10 @@ def isOperation(char : str) -> bool:
     return False
 
 
+ascii_0 = 48
+ascii_9 = 57
 def isNumber(char : str) -> bool:
-    if 48 <= ord(char) <= 57:
+    if ascii_0 <= ord(char) <= ascii_9:
         return True
     return False
 
