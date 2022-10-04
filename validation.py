@@ -2,23 +2,25 @@ from util import isNumber, isOperation
 
 
 def validateExpression(expression: str):
-    lastUnitIsOP = True
+    last_unit_is_op = True
     i = 0
     while i < len(expression):
         if isOperation(expression[i]):
-            if lastUnitIsOP:
+            if last_unit_is_op:
                 return False, i
-            lastUnitIsOP = True
+            last_unit_is_op = True
         if isNumber(expression[i]):
-            if not lastUnitIsOP:
+            if not last_unit_is_op:
                 return False, i
-            lastUnitIsOP = False
+            last_unit_is_op = False
             i = findEndOfNumber(expression, i)
         i = i + 1
-    return not lastUnitIsOP, len(expression)
+    return not last_unit_is_op, len(expression)
 
 
 validChars = {'+', '-', '/', '*', '^', '(', ')', ' '}
+
+
 def isValidChars(input_to_calc: str) -> bool:
     for tmpChar in input_to_calc:
         special = validChars.intersection({tmpChar})
@@ -27,8 +29,8 @@ def isValidChars(input_to_calc: str) -> bool:
     return True
 
 
-def findEndOfNumber(exp: str, curI:int) -> int:
-    for i in range(curI,len(exp)):
+def findEndOfNumber(exp: str, curI: int) -> int:
+    for i in range(curI, len(exp)):
         if not isNumber(exp[i]):
             return i-1
     return len(exp)-1

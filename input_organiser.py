@@ -1,5 +1,6 @@
 from util import isNumber
 
+
 def convertToList(input_to_calc: str):
     # no_space = input_to_calc.replace(" ", "")
     last_num = False
@@ -43,9 +44,7 @@ def getPrecedence(token):
     elif token == "*":
         return 2
     elif token == "/":
-        return 2
-    elif token == "^":
-        return 3        # shouldn't be any other possible values as validChar function handles those cases
+        return 2        # shouldn't be any other possible values as validChar function handles those cases
 
 
 def applyOp(val1, op, val2):
@@ -56,9 +55,7 @@ def applyOp(val1, op, val2):
     elif op == "*":
         return val1 * val2
     elif op == "/":
-        return val1 / val2
-    elif op == "^":
-        return val1 ^ val2      # shouldn't be any other possible values as validChar function handles those cases
+        return val1 / val2  # shouldn't be any other possible values as validChar function handles those cases
 
 
 def act(val_stack, op_stack):
@@ -94,6 +91,7 @@ def evaluate(expr):
         if err != None :
             return err
     return val_stack.pop()
+
 
 # calculate assumes that calulation is fully formed and correct
 def calculate(stuff_to_calculate:str):

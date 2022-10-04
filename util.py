@@ -1,5 +1,7 @@
-operations = {'+', '-', '/', '*', '^'}
-def isOperation(char : str) -> bool:
+operations = {'+', '-', '/', '*'}
+
+
+def isOperation(char: str) -> bool:
     for op in operations:
         if char == op:
             return True
@@ -8,7 +10,9 @@ def isOperation(char : str) -> bool:
 
 ascii_0 = 48
 ascii_9 = 57
-def isNumber(char : str) -> bool:
+
+
+def isNumber(char: str) -> bool:
     if ascii_0 <= ord(char) <= ascii_9:
         return True
     return False
