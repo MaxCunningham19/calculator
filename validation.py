@@ -6,10 +6,10 @@ def validateExpression(expression: str):
     i = 0
     while i < len(expression):
         if isOperation(expression[i]):
-            if last_unit_is_op:
+            if last_unit_is_op and expression[i] != '-':
                 return False, i
             last_unit_is_op = True
-        if isNumber(expression[i]):
+        elif isNumber(expression[i]):
             if not last_unit_is_op:
                 return False, i
             last_unit_is_op = False

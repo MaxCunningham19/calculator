@@ -80,7 +80,7 @@ def evaluate(expr):
             op_stack.pop()  # discard "("
         else:
             while len(op_stack) != 0 and op_stack[-1] != '(' and getPrecedence(op_stack[-1]) >= getPrecedence(token):
-               act(val_stack, op_stack)
+                act(val_stack, op_stack)
             op_stack.append(token)
 
     while len(op_stack) != 0:
@@ -88,10 +88,10 @@ def evaluate(expr):
     return val_stack.pop()
 
 
-# calculate assumes that calulation is fully formed and correct
-def calculate(stuff_to_calculate:str):
-    test = convertToList(stuff_to_calculate)
-    result = evaluate(test)
+# calculate assumes that calculation is fully formed and correct
+def calculate(stuff_to_calculate: str):
+    list_to_calculate = convertToList(stuff_to_calculate)
+    result = evaluate(list_to_calculate)
     return result
 
 

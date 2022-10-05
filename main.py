@@ -14,5 +14,5 @@ if __name__ == "__main__":
                 result = calculate(stuff_to_calculate)
                 print(result)
             else:
-                print("Invalid Input found at position",index)
+                print("Invalid input found at position", index)
     print("Program terminated")
