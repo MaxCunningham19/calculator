@@ -25,7 +25,7 @@ def convertToList(input_to_calc: str):
         elif char == ' ':
             last_num = False
         elif char == '-' and next_unary:
-            negate = True
+            negate = not negate
         elif char == ')':
             last_num = False
             expr.append(char)
