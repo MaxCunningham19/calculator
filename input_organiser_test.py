@@ -36,3 +36,22 @@ def test_applyOp() -> None:
             print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
     print("isNumber Test Complete...")
     assert (len(fails) == 0)
+
+
+def test_calculate():
+    tests = [Test("Simple Exp No Space", "1+1", 2),
+             Test("Simple Exp w/ Space", "1 + 1", 2),
+             Test("Brackets", "(1 + 1) + 2", 4),
+             Test("Multiple Operations", "1 + (2 * 3) / 6 - 9", -7),
+             Test("Double Digits", "10 + 54", 64),
+             Test("Multi Digits", "1 * 21 - 190/19 + 346759", 346770)]
+
+    fails = []
+    for t in tests:
+        result = io.calculate(t.input)
+        if t.output != result:
+            fails.append(t)
+
+            print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
+    print("isNumber Test Complete...")
+    assert (len(fails) == 0)

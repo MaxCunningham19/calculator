@@ -84,6 +84,8 @@ def evaluate(expr):
             op_stack.append(token)
 
     while len(op_stack) != 0:
+        if len(val_stack) == 1:
+            return "Error: open left bracket"
         act(val_stack, op_stack)
     return val_stack.pop()
 
