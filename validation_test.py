@@ -1,19 +1,19 @@
-from validation import validateExpression,findEndOfNumber
+from validation import validateExpression, findEndOfNumber
 from testing_kit import Test
 
 
 def test_validateExpression() -> None:
-    tests = [Test("Simple Exp No Space", "1+1", (True, 3)),
-             Test("Simple Exp w/ Space", "1 + 1", (True, 5)),
-             Test("Brackets", "(1 + 1) + 2", (True, 11)),
-             Test("Multiple Operations", "1 + 2 * 3 / 7 - 9", (True, 17)),
-             Test("Double Digits", "10 + 54", (True, 7)),
-             Test("Multi Digits", "1 * 21 - 190/8 + 346759", (True, 23)),
-             Test("More Numbers", "1 1 + 1", (False, 2)),
-             Test("More Operations", "1 + + 2", (False, 4)),
-             Test("Incorrect Order", "1 + + 1 2", (False, 4)),
-             Test("Incorrect Order 2", " 1 5 *", (False, 3)),
-             Test("Incorrect Order 3", "7 - 1 / - 4 0", (False, 12))]
+    tests = [Test("Simple Expr", [1, '+', 1], None),
+             Test("Simple Expr2", [12, '/', 4], None),
+             Test("Brackets", ['(', 1, '+', 1, ')', '+', 2], None),
+             Test("Multiple Operations", [1, '+', 2, '*', 3, '/', 7, '-', 9], None),
+             Test("Multi Digits", [1, '*', 21, '-', 190, '/', 8, '+', 346759], None),
+             Test("More Numbers", [1, 1, '+', 1], "Error: two numbers in a row: 1 and 1"),
+             Test("More Operations", [1, '+', '*', 2], "Error: two operators in a row: + and *"),
+             Test("Operator first", ['*', 45], "Error: starts with operator"),
+             Test("Operator last", [45, '/'], "Error: ends with operator"),
+             Test("Left bracket error", ['(', 56, '+', 45], "Error: open left bracket"),
+             Test("Right bracket error", [56, '+', 45, ')'], "Error: open right bracket")]
 
     has_failure = False
     for t in tests:
