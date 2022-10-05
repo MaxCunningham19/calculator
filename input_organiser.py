@@ -3,7 +3,6 @@ from validation import validateExpression
 
 
 def convertToList(input_to_calc: str):
-    # no_space = input_to_calc.replace(" ", "")
     last_num = False
     next_unary = True  # if true, next operator will be applied to number (for negation)
     negate = False
@@ -56,15 +55,20 @@ def applyOp(val1, op, val2):
     elif op == "*":
         return val1 * val2
     elif op == "/":
+        if val2 == 0:
+            return "Error: divide by zero"
         return val1 / val2  # shouldn't be any other possible values as validChar function handles those cases
 
 
 def act(val_stack, op_stack):
     op = op_stack.pop()
     val2 = val_stack.pop()
+    if val2 == 0:
+        return "Error: divide by zero"
     val1 = val_stack.pop()
     res = applyOp(val1, op, val2)
     val_stack.append(res)
+    return None
 
 
 def evaluate(expr):
@@ -77,20 +81,21 @@ def evaluate(expr):
             op_stack.append(token)
         elif token == ")":
             while len(op_stack) != 0 and op_stack[-1] != "(":
-                act(val_stack, op_stack)
-            if len(op_stack) == 0:
-                return "Error: open right bracket1"
-            else:
-                op_stack.pop()  # discard "("
+                err = act(val_stack, op_stack)
+                if err is not None:
+                    return err
+            op_stack.pop()  # discard "("
         else:
             while len(op_stack) != 0 and op_stack[-1] != '(' and getPrecedence(op_stack[-1]) >= getPrecedence(token):
-                act(val_stack, op_stack)
+                err = act(val_stack, op_stack)
+                if err is not None:
+                    return err
             op_stack.append(token)
 
     while len(op_stack) != 0:
-        # if len(val_stack) == 1:
-        #     return "Error: open left bracket1"
-        act(val_stack, op_stack)
+        err = act(val_stack, op_stack)
+        if err is not None:
+            return err
     return val_stack.pop()
 
 
