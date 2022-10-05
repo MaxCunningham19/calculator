@@ -75,9 +75,12 @@ def evaluate(expr):
         elif token == "(":
             op_stack.append(token)
         elif token == ")":
-            while op_stack[-1] != "(":
+            while len(op_stack) != 0 and op_stack[-1] != "(":
                 act(val_stack, op_stack)
-            op_stack.pop()  # discard "("
+            if len(op_stack) == 0:
+                return "Error: open right bracket"
+            else:
+                op_stack.pop()  # discard "("
         else:
             while len(op_stack) != 0 and op_stack[-1] != '(' and getPrecedence(op_stack[-1]) >= getPrecedence(token):
                 act(val_stack, op_stack)
