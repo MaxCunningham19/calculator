@@ -1,4 +1,5 @@
-from input_organiser import calculate
+from evaluation import calculate
+
 
 if __name__ == "__main__":
     print("Welcome to simple calculator")
