@@ -1,8 +1,8 @@
-operations = {'+', '-', '/', '*'}
+operators = {'+', '-', '/', '*'}
 
 
 def isOperator(char: str) -> bool:
-    for op in operations:
+    for op in operators:
         if char == op:
             return True
     return False

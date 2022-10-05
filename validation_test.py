@@ -13,7 +13,10 @@ def test_validateExpression() -> None:
              Test("Operator first", ['*', 45], "Error: starts with operator"),
              Test("Operator last", [45, '/'], "Error: ends with operator"),
              Test("Left bracket error", ['(', 56, '+', 45], "Error: open left bracket"),
-             Test("Right bracket error", [56, '+', 45, ')'], "Error: open right bracket")]
+             Test("Right bracket error", [56, '+', 45, ')'], "Error: open right bracket"),
+             Test("Operator before right bracket error", ['(', 56, '*', ')'], "Error: operator before right bracket"),
+             Test("Operator after left bracket error", ['(', '/', 3, ')'], "Error: operator after left bracket"),
+             Test("Invalid character", [34, '?', 45], "Error: unrecognised character: ?")]
 
     has_failure = False
     for t in tests:

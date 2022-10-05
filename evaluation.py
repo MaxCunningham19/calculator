@@ -22,7 +22,7 @@ def applyOp(val1, op, val2):
         return val1 * val2
     elif op == "/":
         if val2 == 0:
-            return "Error: divide by zero"
+            return "Error: division by zero"
         return val1 / val2  # shouldn't be any other possible values as validChar function handles those cases
 
 
