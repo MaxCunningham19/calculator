@@ -93,5 +93,3 @@ def calculate(stuff_to_calculate: str):
     list_to_calculate = convertToList(stuff_to_calculate)
     result = evaluate(list_to_calculate)
     return result
-
-
