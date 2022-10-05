@@ -1,5 +1,4 @@
 from input_organiser import calculate
-from validation import validateExpression
 
 if __name__ == "__main__":
     print("Welcome to simple calculator")
@@ -9,10 +8,6 @@ if __name__ == "__main__":
         if stuff_to_calculate == "quit":
             running = False
         else:
-            isValid, index = validateExpression(stuff_to_calculate)
-            if isValid:
-                result = calculate(stuff_to_calculate)
-                print(result)
-            else:
-                print("Invalid input found at position", index)
+            result = calculate(stuff_to_calculate)
+            print(result)
     print("Program terminated")

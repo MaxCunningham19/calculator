@@ -1,4 +1,5 @@
 from util import isNumber
+from validation import validateExpression
 
 
 def convertToList(input_to_calc: str):
@@ -78,7 +79,7 @@ def evaluate(expr):
             while len(op_stack) != 0 and op_stack[-1] != "(":
                 act(val_stack, op_stack)
             if len(op_stack) == 0:
-                return "Error: open right bracket"
+                return "Error: open right bracket1"
             else:
                 op_stack.pop()  # discard "("
         else:
@@ -87,8 +88,8 @@ def evaluate(expr):
             op_stack.append(token)
 
     while len(op_stack) != 0:
-        if len(val_stack) == 1:
-            return "Error: open left bracket"
+        # if len(val_stack) == 1:
+        #     return "Error: open left bracket1"
         act(val_stack, op_stack)
     return val_stack.pop()
 
@@ -96,5 +97,7 @@ def evaluate(expr):
 # calculate assumes that calculation is fully formed and correct
 def calculate(stuff_to_calculate: str):
     list_to_calculate = convertToList(stuff_to_calculate)
-    result = evaluate(list_to_calculate)
-    return result
+    validation_result = validateExpression(list_to_calculate)
+    if validation_result is None:
+        return evaluate(list_to_calculate)
+    return validation_result
