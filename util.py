@@ -1,4 +1,4 @@
-operators = {'+', '-', '/', '*'}
+operators = {"+", "-", "/", "*"}
 
 
 def isOperator(char: str) -> bool:
@@ -27,22 +27,26 @@ def convertToList(input_to_calc: str):
         if isNumber(char):
             if last_num:
                 if negate:
-                    expr[-1] = expr[-1] * 10 - (ord(char) - 48)  # convert string to number, subtract from end of number in list
+                    # convert string to number, subtract from end of number in list
+                    expr[-1] = expr[-1] * 10 - (ord(char) - 48)
                 else:
-                    expr[-1] = expr[-1] * 10 + (ord(char)-48)    # convert string to number, add onto end of number in list
+                    # convert string to number, add onto end of number in list
+                    expr[-1] = expr[-1] * 10 + (ord(char) - 48)
             else:
                 last_num = True
                 if negate:
-                    expr.append((ord(char)-48)*-1)
+                    expr.append((ord(char) - 48) * -1)
                 else:
-                    expr.append(ord(char)-48)     # convert from string to number and add to list
-            next_unary = False  # if operator follows number, it is not unary
+                    # convert from string to number and add to list
+                    expr.append(ord(char) - 48)
+            # if operator follows number, it is not unary
+            next_unary = False
             negate = False
-        elif char == ' ':
+        elif char == " ":
             last_num = False
-        elif char == '-' and next_unary:
+        elif char == "-" and next_unary:
             negate = not negate
-        elif char == ')':
+        elif char == ")":
             last_num = False
             expr.append(char)
         else:
