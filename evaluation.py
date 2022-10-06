@@ -10,7 +10,8 @@ def getPrecedence(token):
     elif token == "*":
         return 2
     elif token == "/":
-        return 2        # shouldn't be any other possible values as validChar function handles those cases
+        # shouldn't be any other possible values as validChar function handles those cases.
+        return 2
 
 
 def applyOp(val1, op, val2):
@@ -23,7 +24,9 @@ def applyOp(val1, op, val2):
     elif op == "/":
         if val2 == 0:
             return "Error: division by zero"
-        return val1 / val2  # shouldn't be any other possible values as validChar function handles those cases
+        return (
+            val1 / val2
+        )  # shouldn't be any other possible values as validChar function handles those cases.
 
 
 def rep(val_stack, op_stack):
@@ -52,7 +55,11 @@ def evaluateExpression(expr):
                     return err
             op_stack.pop()  # discard "("
         else:
-            while len(op_stack) != 0 and op_stack[-1] != '(' and getPrecedence(op_stack[-1]) >= getPrecedence(token):
+            while (
+                len(op_stack) != 0
+                and op_stack[-1] != "("
+                and getPrecedence(op_stack[-1]) >= getPrecedence(token)
+            ):
                 err = rep(val_stack, op_stack)
                 if err is not None:
                     return err
