@@ -24,7 +24,7 @@ def test_isNumber() -> None:
 
     fails = runTests(tests,util.isNumber)        
     print("isNumber Test Complete...")
-    assert (len(fails) == 0)
+    assert len(fails) == 0
 
 
 def test_isOperator() -> None:
@@ -53,7 +53,7 @@ def test_isOperator() -> None:
 
     fails = runTests(tests,util.isOperator)
     print("isOperator Test Complete...")
-    assert (len(fails) == 0)
+    assert len(fails) == 0
 
 
 def test_convertToList() -> None:
@@ -66,5 +66,5 @@ def test_convertToList() -> None:
     ]
 
     fails = runTests(tests,util.convertToList)
-    print("isOperator Test Complete...")
-    assert (len(fails) == 0)
+    print("convertToList Test Complete...")
+    assert len(fails) == 0
