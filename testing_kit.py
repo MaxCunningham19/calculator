@@ -1,3 +1,5 @@
+from typing import List
+
 class Test:
     def __init__(self, name: str, input, output) -> None:
         self.name = name
@@ -5,7 +7,7 @@ class Test:
         self.output = output
 
 
-def runTests(tests:[Test],function):
+def runTests(tests: List[Test],function):
     fails = []
     for t in tests:
         result = test(t,function)
