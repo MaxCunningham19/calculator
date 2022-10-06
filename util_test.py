@@ -1,4 +1,4 @@
-from testing_kit import Test
+from testing_kit import Test, runTests
 import util as util
 
 
@@ -20,12 +20,7 @@ def test_isNumber() -> None:
              Test("Multi", '*', False),
              Test("Sub", '-', False)]
 
-    fails = []
-    for t in tests:
-        result = util.isNumber(t.input)
-        if t.output != result:
-            fails.append(t)
-            print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
+    fails = runTests(tests,util.isNumber)        
     print("isNumber Test Complete...")
     assert (len(fails) == 0)
 
@@ -52,13 +47,8 @@ def test_isOperator() -> None:
              Test("Div", "/", True),
              Test("Modulo", "%", False)]
 
-    fails = []
-    for t in tests:
-        result = util.isOperator(t.input)
-        if t.output != result:
-            fails.append(t)
-            print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
-    print("isNumber Test Complete...")
+    fails = runTests(tests,util.isOperator)
+    print("isOperator Test Complete...")
     assert (len(fails) == 0)
 
 
@@ -69,11 +59,6 @@ def test_convertToList() -> None:
              Test("Expression with negation", "12 / -3", [12, '/', -3]),
              Test("Expression with multiple negation", "12 / --3", [12, '/', 3])]
 
-    fails = []
-    for t in tests:
-        result = util.convertToList(t.input)
-        if t.output != result:
-            fails.append(t)
-            print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
-    print("isNumber Test Complete...")
+    fails = runTests(tests,util.convertToList)
+    print("isOperator Test Complete...")
     assert (len(fails) == 0)
