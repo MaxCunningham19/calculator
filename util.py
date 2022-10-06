@@ -1,4 +1,4 @@
-from typing import List
+from typing import Union
 
 operators = {"+", "-", "/", "*"}
 
@@ -24,7 +24,7 @@ def convertToList(input_to_calc: str):
     last_num = False
     next_unary = True  # if true, next operator will be applied to number (for negation)
     negate = False
-    expr : List[str|int] = []
+    expr : Union[str,int] = []
     for char in input_to_calc:
         if isNumber(char):
             if last_num:

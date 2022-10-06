@@ -1,12 +1,12 @@
 from util import isOperator
-from typing import List
+from typing import Union
 
 # @param: expression
 #           - expression is expected to be a List[str|int] which will be the users input as a list of values and operations
 #
 # @return : None|str - if there is an incorrectly formed input then an error (str) will be returned otherwise None
 #
-def validateExpression(expression : List[str|int]):
+def validateExpression(expression : Union[str,int]):
     if isOperator(expression[0]):
         return "Error: starts with operator"
     if isOperator(expression[-1]):
