@@ -23,7 +23,7 @@ def validateExpression(expression : List[Any]):
             if last_bracket == ")":
                 return "Error: operator needed after right bracket"
             last_op = ""
-            last_num = i
+            last_num = str(i)
             last_bracket = ""
         elif isOperator(i):
             if last_op != "":
