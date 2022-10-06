@@ -55,4 +55,4 @@ def test_calculate():
 
     fails = runTests(tests, eval.calculate)
     print("isNumber Test Complete...")
-    assert (len(fails) == 0)
+    assert len(fails) == 0
