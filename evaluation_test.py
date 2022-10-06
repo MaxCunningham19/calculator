@@ -43,13 +43,15 @@ def test_applyOp() -> None:
 
 # also tests evaluateExpression
 def test_calculate():
-    tests = [Test("Simple Exp No Space", "1+1", 2),
-             Test("Simple Exp w/ Space", "1 + 1", 2),
-             Test("Brackets", "(1 + 1) + 2", 4),
-             Test("Multiple Operations", "1 + (2 * 3) / 6 - 9", -7),
-             Test("Double Digits", "10 + 54", 64),
-             Test("Multi Digits", "1 * 21 - 190/19 + 346759", 346770),
-             Test("Error", "45 * / 6", "Error: two operators in a row: * and /")]
+    tests = [
+        Test("Simple Exp No Space", "1+1", 2),
+        Test("Simple Exp w/ Space", "1 + 1", 2),
+        Test("Brackets", "(1 + 1) + 2", 4),
+        Test("Multiple Operations", "1 + (2 * 3) / 6 - 9", -7),
+        Test("Double Digits", "10 + 54", 64),
+        Test("Multi Digits", "1 * 21 - 190/19 + 346759", 346770),
+        Test("Error", "45 * / 6", "Error: two operators in a row: * and /")
+    ]
 
     fails = runTests(tests, eval.calculate)
     print("isNumber Test Complete...")
