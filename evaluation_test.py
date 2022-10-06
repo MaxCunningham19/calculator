@@ -1,23 +1,19 @@
-import evaluation as io
-from testing_kit import Test
+import evaluation as eval
+from testing_kit import Test, runTests
 
 
 def test_getPrecedence() -> None:
-    tests = [Test("Addition", '+', 1),
-             Test("Subtraction", '-', 1),
-             Test("Multiplication", '*', 2),
-             Test("Division", '/', 2),
-             Test("No OP", ' ', None)]
+    tests = [
+        Test("Addition", '+', 1),
+        Test("Subtraction", '-', 1),
+        Test("Multiplication", '*', 2),
+        Test("Division", '/', 2),
+        Test("No OP", ' ', None)
+    ]
 
-    fails = []
-    for t in tests:
-        result = io.getPrecedence(t.input)
-        if t.output != result:
-            fails.append(t)
-
-            print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
-    print("isNumber Test Complete...")
-    assert (len(fails) == 0)
+    fails = runTests(tests,eval.getPrecedence)
+    print("getPrecedence Test Complete...")
+    assert len(fails) == 0
 
 
 def test_applyOp() -> None:
@@ -31,18 +27,18 @@ def test_applyOp() -> None:
 
     fails = []
     for t in tests:
-        result = io.applyOp(12, t.input, 4)
+        result = eval.applyOp(12, t.input, 4)
         if t.output != result:
             fails.append(t)
             print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
 
-    result = io.applyOp(1, zero_test.input, 0)
+    result = eval.applyOp(1, zero_test.input, 0)
     if result != zero_test.output:
         fails.append(zero_test)
         print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
 
     print("isNumber Test Complete...")
-    assert (len(fails) == 0)
+    assert len(fails) == 0
 
 
 # also tests evaluateExpression
@@ -55,12 +51,6 @@ def test_calculate():
              Test("Multi Digits", "1 * 21 - 190/19 + 346759", 346770),
              Test("Error", "45 * / 6", "Error: two operators in a row: * and /")]
 
-    fails = []
-    for t in tests:
-        result = io.calculate(t.input)
-        if t.output != result:
-            fails.append(t)
-
-            print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
+    fails = runTests(tests, eval.calculate)
     print("isNumber Test Complete...")
     assert (len(fails) == 0)
