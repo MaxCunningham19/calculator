@@ -1,5 +1,6 @@
-from testing_kit import Test, runTests
 import util as util
+from testing_kit import Test, runTests
+
 
 
 def test_isNumber() -> None:
@@ -19,7 +20,7 @@ def test_isNumber() -> None:
         Test("Capital", "M", False),
         Test("Capital 2", "Q", False),
         Test("Multi", "*", False),
-        Test("Sub", "-", False)
+        Test("Sub", "-", False),
     ]
 
     fails = runTests(tests, util.isNumber)
@@ -48,7 +49,7 @@ def test_isOperator() -> None:
         Test("Add", "+", True),
         Test("Pow", "^", False),
         Test("Div", "/", True),
-        Test("Modulo", "%", False)
+        Test("Modulo", "%", False),
     ]
 
     fails = runTests(tests, util.isOperator)
@@ -60,8 +61,11 @@ def test_convertToList() -> None:
     tests = [
         Test("Simple Expression", "3 + 15", [3, "+", 15]),
         Test("Simple Expression, no spaces", "3+15", [3, "+", 15]),
-        Test("Expression with brackets", "34 * (21 - 3)",
-             [34, "*", "(", 21, "-", 3, ")"]),
+        Test(
+            "Expression with brackets",
+            "34 * (21 - 3)",
+            [34, "*", "(", 21, "-", 3, ")"],
+        ),
         Test("Expression with negation", "12 / -3", [12, "/", -3]),
         Test("Expression with multiple negation", "12 / --3", [12, "/", 3]),
     ]
