@@ -30,7 +30,7 @@ def test_isNumber() -> None:
     assert (len(fails) == 0)
 
 
-def test_isOperation() -> None:
+def test_isOperator() -> None:
     tests = [Test("Zero", '0', False),
              Test("One", '1', False),
              Test("Two", '2', False),
@@ -54,7 +54,24 @@ def test_isOperation() -> None:
 
     fails = []
     for t in tests:
-        result = util.isOperation(t.input)
+        result = util.isOperator(t.input)
+        if t.output != result:
+            fails.append(t)
+            print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
+    print("isNumber Test Complete...")
+    assert (len(fails) == 0)
+
+
+def test_convertToList() -> None:
+    tests = [Test("Simple Expression", "3 + 15", [3, '+', 15]),
+             Test("Simple Expression, no spaces", "3+15", [3, '+', 15]),
+             Test("Expression with brackets", "34 * (21 - 3)", [34, '*', '(', 21, '-', 3, ')']),
+             Test("Expression with negation", "12 / -3", [12, '/', -3]),
+             Test("Expression with multiple negation", "12 / --3", [12, '/', 3])]
+
+    fails = []
+    for t in tests:
+        result = util.convertToList(t.input)
         if t.output != result:
             fails.append(t)
             print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
