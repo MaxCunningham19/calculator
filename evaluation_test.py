@@ -23,7 +23,7 @@ def test_applyOp() -> None:
         Test("Subtraction", "-", 8),
         Test("Multiplication", "*", 48),
         Test("Division", "/", 3),
-        ]
+    ]
     # applies division with 1 and 0
     zero_test = Test("Divide by zero", "/", "Error: division by zero")
 

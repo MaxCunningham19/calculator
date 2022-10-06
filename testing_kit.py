@@ -12,7 +12,7 @@ def runTests(tests: List[Test], function):
     fails = []
     for t in tests:
         result = test(t, function)
-        if result != None:
+        if result is not None:
             fails.append(result)
     return fails
 

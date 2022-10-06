@@ -22,7 +22,8 @@ def isNumber(char: str) -> bool:
 
 def convertToList(input_to_calc: str):
     last_num = False
-    next_unary = True  # if true, next operator will be applied to number (for negation)
+    # if true, next operator will be applied to number (for negation)
+    next_unary = True
     negate = False
     expr: List[Any] = []
     for char in input_to_calc:

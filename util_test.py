@@ -22,7 +22,7 @@ def test_isNumber() -> None:
         Test("Sub", "-", False)
     ]
 
-    fails = runTests(tests,util.isNumber)        
+    fails = runTests(tests, util.isNumber)
     print("isNumber Test Complete...")
     assert len(fails) == 0
 
@@ -51,7 +51,7 @@ def test_isOperator() -> None:
         Test("Modulo", "%", False)
     ]
 
-    fails = runTests(tests,util.isOperator)
+    fails = runTests(tests, util.isOperator)
     print("isOperator Test Complete...")
     assert len(fails) == 0
 
@@ -60,11 +60,12 @@ def test_convertToList() -> None:
     tests = [
         Test("Simple Expression", "3 + 15", [3, "+", 15]),
         Test("Simple Expression, no spaces", "3+15", [3, "+", 15]),
-        Test("Expression with brackets", "34 * (21 - 3)", [34, "*", "(", 21, "-", 3, ")"]),
+        Test("Expression with brackets", "34 * (21 - 3)",
+             [34, "*", "(", 21, "-", 3, ")"]),
         Test("Expression with negation", "12 / -3", [12, "/", -3]),
         Test("Expression with multiple negation", "12 / --3", [12, "/", 3]),
     ]
 
-    fails = runTests(tests,util.convertToList)
+    fails = runTests(tests, util.convertToList)
     print("convertToList Test Complete...")
     assert len(fails) == 0
