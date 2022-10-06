@@ -24,7 +24,7 @@ def convertToList(input_to_calc: str):
     last_num = False
     next_unary = True  # if true, next operator will be applied to number (for negation)
     negate = False
-    expr : List[Any] = []
+    expr: List[Any] = []
     for char in input_to_calc:
         if isNumber(char):
             if last_num:
