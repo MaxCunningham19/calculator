@@ -1,7 +1,3 @@
-from util import convertToList
-from validation import validateExpression
-
-
 def getPrecedence(token):
     if token == "+":
         return 1
@@ -40,7 +36,7 @@ def rep(val_stack, op_stack):
     return None
 
 
-def evaluateExpression(expr):
+def calculate(expr):
     val_stack = []
     op_stack = []
     for token in expr:
@@ -70,12 +66,3 @@ def evaluateExpression(expr):
         if err is not None:
             return err
     return val_stack.pop()
-
-
-# calculate assumes that calculation is fully formed and correct
-def calculate(stuff_to_calculate: str):
-    list_to_calculate = convertToList(stuff_to_calculate)
-    validation_result = validateExpression(list_to_calculate)
-    if validation_result is None:
-        return evaluateExpression(list_to_calculate)
-    return validation_result
