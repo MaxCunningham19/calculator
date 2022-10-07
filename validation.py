@@ -24,8 +24,7 @@ def validateExpression(expression: List[Any]):
         if type(i) == int:
             if last_num != "":
                 return (
-                    "Error: two numbers in a row: " +
-                    str(last_num) + " and " + str(i)
+                    "Error: two numbers in a row: " + str(last_num) + " and " + str(i)
                 )
             if last_bracket == ")":
                 return "Error: operator needed after right bracket"

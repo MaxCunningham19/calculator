@@ -48,9 +48,10 @@ def test_calculate() -> None:
         Test("Simple Expr", [1, "+", 1], 2),
         Test("Simple Expr2", [12, "/", 4], 3),
         Test("Brackets", ["(", 1, "+", 1, ")", "+", 2], 4),
-        Test("Multi Ops",
-             ["(", "(", 1, "+", 2, ")", "*", 3, ")", "/", 9, "-", 9],
-             -8,
+        Test(
+            "Multi Ops",
+            ["(", "(", 1, "+", 2, ")", "*", 3, ")", "/", 9, "-", 9],
+            -8,
         ),
         Test(
             "Multi Digits",
