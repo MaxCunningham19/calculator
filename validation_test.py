@@ -54,7 +54,7 @@ def test_validateExpression() -> None:
 
     has_failure = False
     for t in tests:
-        result = validateExpression(t.input)
+        result = validateExpression(t.inp)
         if result != t.output:
             print("Test", t.name, "failed - Expected:", t.output, "Got:", result)
             has_failure = True

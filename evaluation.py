@@ -10,8 +10,8 @@ def getPrecedence(token):
     elif token == "*":
         return 2
     elif token == "/":
-        # shouldn't be any other possible values as validChar function handles those cases.
         return 2
+    # shouldn't be any other possible values as validateExpression function handles those cases.
 
 
 def applyOp(val1, op, val2):
@@ -24,11 +24,11 @@ def applyOp(val1, op, val2):
     elif op == "/":
         if val2 == 0:
             return "Error: division by zero"
-        return (
-            val1 / val2
-        )  # shouldn't be any other possible values as validChar function handles those cases.
+        return val1 / val2
+    # shouldn't be any other possible values as validateExpression function handles those cases.
 
 
+# code in here repeated often
 def rep(val_stack, op_stack):
     val2 = val_stack.pop()
     if val2 == 0:

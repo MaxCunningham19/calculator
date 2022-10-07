@@ -29,12 +29,12 @@ def test_applyOp() -> None:
 
     fails = []
     for t in tests:
-        result = eval.applyOp(12, t.input, 4)
+        result = eval.applyOp(12, t.inp, 4)
         if t.output != result:
             fails.append(t)
             print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
 
-    result = eval.applyOp(1, zero_test.input, 0)
+    result = eval.applyOp(1, zero_test.inp, 0)
     if result != zero_test.output:
         fails.append(zero_test)
         print("Test", t.name, "Fails Expected:", t.output, "Got:", result)

@@ -2,7 +2,6 @@ import util as util
 from testing_kit import Test, runTests
 
 
-
 def test_isNumber() -> None:
     tests = [
         Test("Zero", "0", True),
