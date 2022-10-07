@@ -1,6 +1,6 @@
-from evaluation import calculate
 import util as util
 import validation as valid
+from evaluation import calculate
 
 
 def processInput(stuff_to_calculate):
