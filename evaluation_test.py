@@ -29,12 +29,12 @@ def test_applyOp() -> None:
 
     fails = []
     for t in tests:
-        result = evaluation.applyOp(12, t.inp, 4)
+        result = evaluation.applyOp(12, t.input, 4)
         if t.output != result:
             fails.append(t)
             print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
 
-    result = evaluation.applyOp(1, zero_test.inp, 0)
+    result = evaluation.applyOp(1, zero_test.input, 0)
     if result != zero_test.output:
         fails.append(zero_test)
         print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
@@ -61,4 +61,28 @@ def test_calculate() -> None:
     ]
 
     fails = runTests(tests, evaluation.calculate)
+    assert len(fails) == 0
+
+
+def test_performOperation() -> None:
+    tests = [
+        Test("Add", ([1, 2], ["+"]), [3]),
+        Test("Sub", ([15, 9], ["-"]), [6]),
+        Test("Multi", ([5, 5], ["*"]), [25]),
+        Test("Div", ([24, 6], ["/"]), [4]),
+    ]
+
+    fails = []
+    for test in tests:
+        evaluation.performOperation(test.input[0], test.input[1])
+        if test.input[0] != test.output:
+            fails.append(test)
+            print(
+                "Test",
+                test.name,
+                "failed expected:",
+                test.output,
+                "got:",
+                test.input[0],
+            )
     assert len(fails) == 0

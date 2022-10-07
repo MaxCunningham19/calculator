@@ -24,13 +24,16 @@ def applyOp(val1, op, val2):
     # shouldn't be any other possible values as validateExpression function handles those cases.
 
 
-# code in here repeated often
-def rep(val_stack, op_stack):
+def divByZero(op, val2) -> bool:
+    return val2 == 0 and op == "/"
+
+
+def performOperation(val_stack, op_stack):
     val2 = val_stack.pop()
-    if val2 == 0:
-        return "Error: divide by zero"
     val1 = val_stack.pop()
     op = op_stack.pop()
+    if divByZero(op, val2):
+        return "Error: division by zero"
     res = applyOp(val1, op, val2)
     val_stack.append(res)
     return None
@@ -46,7 +49,7 @@ def calculate(expr):
             op_stack.append(token)
         elif token == ")":
             while len(op_stack) != 0 and op_stack[-1] != "(":
-                err = rep(val_stack, op_stack)
+                err = performOperation(val_stack, op_stack)
                 if err is not None:
                     return err
             op_stack.pop()  # discard "("
@@ -56,13 +59,13 @@ def calculate(expr):
                 and op_stack[-1] != "("
                 and getPrecedence(op_stack[-1]) >= getPrecedence(token)
             ):
-                err = rep(val_stack, op_stack)
+                err = performOperation(val_stack, op_stack)
                 if err is not None:
                     return err
             op_stack.append(token)
 
     while len(op_stack) != 0:
-        err = rep(val_stack, op_stack)
+        err = performOperation(val_stack, op_stack)
         if err is not None:
             return err
     return val_stack.pop()
