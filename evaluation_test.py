@@ -1,4 +1,4 @@
-import evaluation as eval
+import evaluation
 from testing_kit import Test, runTests
 
 
@@ -11,7 +11,7 @@ def test_getPrecedence() -> None:
         Test("No OP", " ", None),
     ]
 
-    fails = runTests(tests, eval.getPrecedence)
+    fails = runTests(tests, evaluation.getPrecedence)
     print("getPrecedence Test Complete...")
     assert len(fails) == 0
 
@@ -29,12 +29,12 @@ def test_applyOp() -> None:
 
     fails = []
     for t in tests:
-        result = eval.applyOp(12, t.inp, 4)
+        result = evaluation.applyOp(12, t.inp, 4)
         if t.output != result:
             fails.append(t)
             print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
 
-    result = eval.applyOp(1, zero_test.inp, 0)
+    result = evaluation.applyOp(1, zero_test.inp, 0)
     if result != zero_test.output:
         fails.append(zero_test)
         print("Test", t.name, "Fails Expected:", t.output, "Got:", result)
@@ -55,6 +55,6 @@ def test_calculate():
         Test("Error", "45 * / 6", "Error: two operators in a row: * and /"),
     ]
 
-    fails = runTests(tests, eval.calculate)
+    fails = runTests(tests, evaluation.calculate)
     print("isNumber Test Complete...")
     assert len(fails) == 0

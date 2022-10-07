@@ -1,6 +1,6 @@
 from testing_kit import Test
-
 from validation import validateExpression
+
 
 def test_validateExpression() -> None:
     tests = [

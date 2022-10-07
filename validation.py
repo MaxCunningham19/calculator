@@ -1,6 +1,6 @@
 from typing import Any, List
-
 from util import isOperator
+
 
 # @param: expression is expected to be a List[str|int]
 #  which will be the users input as a list of values
