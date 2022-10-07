@@ -8,7 +8,7 @@ def test_getPrecedence() -> None:
         Test("Subtraction", "-", 1),
         Test("Multiplication", "*", 2),
         Test("Division", "/", 2),
-        Test("No OP", " ", None),
+        Test("No OP", " ", -1),
     ]
 
     fails = runTests(tests, evaluation.getPrecedence)

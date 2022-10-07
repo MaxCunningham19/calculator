@@ -7,6 +7,7 @@ def getPrecedence(token):
         return 2
     elif token == "/":
         return 2
+    return -1
     # shouldn't be any other possible values as validateExpression function handles those cases.
 
 
@@ -54,6 +55,7 @@ def calculate(expr):
                     return err
             op_stack.pop()  # discard "("
         else:
+            
             while (
                 len(op_stack) != 0
                 and op_stack[-1] != "("
