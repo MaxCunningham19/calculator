@@ -1,6 +1,5 @@
 from evaluation import calculate
 
-
 if __name__ == "__main__":
     print("Welcome to simple calculator")
     running = True
