@@ -77,6 +77,12 @@ def test_performOperation() -> None:
         evaluation.performOperation(test.input[0], test.input[1])
         if test.input[0] != test.output:
             fails.append(test)
-            print("Test", test.name, "failed expected:",
-                  test.output, "got:", test.input[0])
+            print(
+                "Test",
+                test.name,
+                "failed expected:",
+                test.output,
+                "got:",
+                test.input[0],
+            )
     assert len(fails) == 0

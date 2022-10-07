@@ -24,10 +24,16 @@ def applyOp(val1, op, val2):
     # shouldn't be any other possible values as validateExpression function handles those cases.
 
 
+def divByZero(op, val2) -> bool:
+    return val2 == 0 and op == "/"
+
+
 def performOperation(val_stack, op_stack):
     val2 = val_stack.pop()
     val1 = val_stack.pop()
     op = op_stack.pop()
+    if divByZero(op, val2):
+        return "Error: division by zero"
     res = applyOp(val1, op, val2)
     val_stack.append(res)
     return None
