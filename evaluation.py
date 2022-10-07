@@ -54,8 +54,7 @@ def calculate(expr):
                 if err is not None:
                     return err
             op_stack.pop()  # discard "("
-        else:
-            
+        else: 
             while (
                 len(op_stack) != 0
                 and op_stack[-1] != "("
