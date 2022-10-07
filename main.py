@@ -11,7 +11,7 @@ def processInput(stuff_to_calculate):
     if validation_result is not None:
         print(validation_result)
     else:
-        result = calculate(stuff_to_calculate)
+        result = calculate(list_to_calculate)
         print(result)
     return True
 
